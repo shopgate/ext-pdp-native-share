@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@shopgate/engage/core';
 import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
 import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
 import Ripple from '@shopgate/pwa-ui-shared/Ripple';
@@ -74,6 +75,7 @@ class ShareButton extends Component {
         className={`${this.constructor.getIconStyle()} ${this.props.className}`}
         data-test-id="shareIcon"
         type="button"
+        aria-label={i18n.text('product.share')}
       >
         <Ripple className={`${styles.ripple(isIOSTheme())} ${this.props.rippleClassname}`} onComplete={this.handleClick}>
           {this.constructor.renderIcon()}
