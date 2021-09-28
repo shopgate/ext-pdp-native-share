@@ -2,6 +2,14 @@
  All notable changes to this project will be documented in this file.
  The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### [2.1.4] - 2020-06-18
+### Fixed
+- aria label
+
+### [2.1.3]
+### Added
+- iOSIconStyles
+-
 ### [2.1.2] - 2020-06-18
 ### Fixed
 - style adjustments for use with sticky buttons extension
