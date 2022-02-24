@@ -1,5 +1,7 @@
 {
-  "shareButton": {
-    "label": "Partager le produit"
+  "pdpNativeShare": {
+    "shareButton": {
+      "label": "Partager le produit"
+    }
   }
 }

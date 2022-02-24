@@ -101,7 +101,7 @@ class ShareButtonForTabletExtension extends Component {
         type="button"
       >
         <span>{this.renderIcon()}</span>
-        <I18n.Text string="shareButton.label" />
+        <I18n.Text string="pdpNativeShare.shareButton.label" />
       </button>
     );
   }
