@@ -72,7 +72,7 @@ class ShareButton extends Component {
 
     return (
       <button
-        className={`${this.constructor.getIconStyle()} ${this.props.className}`}
+        className={`${this.constructor.getIconStyle()} ${this.props.className} share-button-mobile-mode`}
         data-test-id="shareIcon"
         type="button"
         aria-label={i18n.text('product.share')}

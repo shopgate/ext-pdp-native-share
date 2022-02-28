@@ -19,6 +19,47 @@
       "path": "frontend/portals/NavbarNavigatorCartButtonBefore",
       "target": "app-bar.cart-button.before",
       "type": "portals"
+    },
+    {
+      "id": "ProductTabletRightColumnCTAS",
+      "path": "frontend/portals/ProductTabletRightColumnCTAS",
+      "target": "product.tablet.right-column.ctas",
+      "type": "portals"
+    },
+    {
+      "id": "en-US",
+      "path": "frontend/locale/en-US.json",
+      "type": "translations"
+    },
+    {
+      "id": "es-ES",
+      "path": "frontend/locale/es-ES.json",
+      "type": "translations"
+    },
+    {
+      "id": "de-DE",
+      "path": "frontend/locale/de-DE.json",
+      "type": "translations"
+    },
+    {
+      "id": "fr-FR",
+      "path": "frontend/locale/fr-FR.json",
+      "type": "translations"
+    },
+    {
+      "id": "it-IT",
+      "path": "frontend/locale/it-IT.json",
+      "type": "translations"
+    },
+    {
+      "id": "nl-NL",
+      "path": "frontend/locale/nl-NL.json",
+      "type": "translations"
+    },
+    {
+      "id": "pt-PT",
+      "path": "frontend/locale/pt-PT.json",
+      "type": "translations"
     }
   ],
   "steps": [],
