@@ -16,7 +16,9 @@ const button = css({
   outline: 0,
   transition: 'width 300ms cubic-bezier(0.25, 0.1, 0.25, 1)',
   padding: `${(variables.gap.big * 0.75) - 1}px ${variables.gap.big * 0.6}px ${(variables.gap.big * 0.75) + 1}px`,
-  marginLeft: 8,
+  '@media only screen and (min-width: 786px)': {
+    marginLeft: 8,
+  },
 });
 
 const disabled = css(button, {
