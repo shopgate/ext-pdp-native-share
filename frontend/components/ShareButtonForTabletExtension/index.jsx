@@ -9,6 +9,9 @@ import { css } from 'glamor';
 import connect from '../../connector';
 import styles from './style';
 
+css.global('.share-button-mobile-mode', { display: 'var(--share-button-mobile-mode)' });
+const { style } = document.documentElement;
+
 /**
  * The share button component for the tablet adjustments extension.
  */
@@ -45,14 +48,14 @@ class ShareButtonForTabletExtension extends Component {
    * Hide StickyShareButton if tablet-adjustment-extension is enabled and tablet mode is active
    */
   componentDidMount() {
-    css.global('.share-button-mobile-mode', { display: 'none' });
+    style.setProperty('--share-button-mobile-mode', 'none');
   }
 
   /**
    * Show StickyShareButton if mobile mode is active
    */
   componentWillUnmount() {
-    css.global('.share-button-mobile-mode', { display: 'block' });
+    style.setProperty('--share-button-mobile-mode', 'block');
   }
 
   /**
