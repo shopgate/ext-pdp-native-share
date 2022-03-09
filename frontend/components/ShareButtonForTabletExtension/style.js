@@ -19,6 +19,9 @@ const button = css({
   '@media only screen and (min-width: 786px)': {
     marginLeft: 8,
   },
+  '@media only screen and (max-width: 786px)': {
+    marginLeft: 0,
+  },
 });
 
 const disabled = css(button, {
