@@ -42,7 +42,7 @@ class ShareButton extends Component {
 
   /**
    * Renders the share icon depending on theme
-   * @returns {JSX}
+   * @returns {JSX.Element}
    */
   static renderIcon() {
     if (isIOSTheme()) {
@@ -54,8 +54,7 @@ class ShareButton extends Component {
 
   /**
    * Handles the share button click
-   * Show's share screen for app
-   * @param {Object} event The click event object
+   * Shows share screen for app
    */
   handleClick = () => {
     this.props.shareItem();
@@ -63,7 +62,7 @@ class ShareButton extends Component {
 
   /**
    * Renders the components
-   * @returns {JSX}
+   * @returns {JSX.Element}
    */
   render() {
     if (!this.props.shareParams || this.props.shareParams.deepLink === undefined) {

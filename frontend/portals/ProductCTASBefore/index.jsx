@@ -9,7 +9,7 @@ export default (props) => {
     return null;
   }
   return (
-    <div className={styles.iOSButtons}>
+    <div className={`${styles.iOSButtons} native-share__button`}>
       <ShareButton {...props} />
     </div>
   );
