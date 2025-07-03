@@ -51,14 +51,6 @@
     "redux-mock-store": "^1.5.3",
     "reselect": "^3.0.1"
   },
-  "peerDependencies": {
-    "@shopgate/pwa-common": "^6.8.0",
-    "@shopgate/pwa-common-commerce": "^6.8.0",
-    "@shopgate/pwa-core": "^6.8.0",
-    "@shopgate/pwa-ui-ios": "^6.8.0",
-    "@shopgate/pwa-ui-material": "^6.8.0",
-    "@shopgate/pwa-ui-shared": "^6.8.0"
-  },
   "dependencies": {
     "@shopgate-ps/pwa-extension-kit": "^0.6.0"
   }
