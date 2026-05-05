@@ -74,7 +74,7 @@ class ShareButton extends Component {
         className={`${this.constructor.getIconStyle()} ${this.props.className} share-button-mobile-mode`}
         data-test-id="shareIcon"
         type="button"
-        aria-label={i18n.text('product.share')}
+        aria-label={i18n.text('pdpNativeShare.shareButton.label')}
       >
         <Ripple className={`${styles.ripple(isIOSTheme())} ${this.props.rippleClassname}`} onComplete={this.handleClick}>
           {this.constructor.renderIcon()}

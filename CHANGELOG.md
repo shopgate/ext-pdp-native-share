@@ -3,6 +3,10 @@
  The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 2.3.1 - 2026-05-04
+### Fixed
+- a11y label for tablet share button
+
 ## 2.3.0 - 2025-07-02
 ### Added
 - added css classes

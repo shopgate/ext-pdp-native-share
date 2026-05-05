@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import I18n from '@shopgate/pwa-common/components/I18n';
+import { i18n } from '@shopgate/engage/core';
 import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
 import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
 import isIOSTheme from '@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme';
@@ -22,13 +23,6 @@ class ShareButtonForTabletExtension extends Component {
     shareParams: PropTypes.shape(),
   };
 
-  /**
-   * Context types definition.
-   * @type {{i18n: shim}}
-   */
-  static contextTypes = {
-    i18n: PropTypes.func,
-  };
 
   static defaultProps = {
     'aria-hidden': null,
@@ -59,16 +53,6 @@ class ShareButtonForTabletExtension extends Component {
   }
 
   /**
-   * Returns text for aria-label.
-   * @returns {string}
-   */
-  getLabel() {
-    const { __ } = this.context.i18n();
-    const lang = 'shareButton.label';
-    return __(lang);
-  }
-
-  /**
    * Handles the share button click
    * Show's share screen for app
    * @param {Object} event The click event object
@@ -96,7 +80,7 @@ class ShareButtonForTabletExtension extends Component {
 
     return (
       <button
-        aria-label={this.getLabel()}
+        aria-label={i18n.text('pdpNativeShare.shareButton.label')}
         aria-hidden={this.props['aria-hidden']}
         className={`ui-shared__share-button-for-tablet-extension ${styles.button}`}
         onClick={this.handleClick}
