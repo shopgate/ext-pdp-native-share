@@ -32,7 +32,7 @@ const icon = css({
   display: 'inline',
   marginBottom: -2,
   marginRight: 5,
-});
+}).toString();
 
 export default {
   button,
