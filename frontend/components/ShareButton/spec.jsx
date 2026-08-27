@@ -36,7 +36,6 @@ const mockedShareItem = jest.fn();
 jest.mock('@shopgate/pwa-core/commands/shareItem', () => () => mockedShareItem());
 
 describe('ShareButton', () => {
-  // eslint-disable-next-line require-jsdoc
   const makeComponent = () => {
     // eslint-disable-next-line global-require
     const ShareButton = require('./index').default;

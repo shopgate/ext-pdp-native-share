@@ -1,8 +1,10 @@
 import React from 'react';
 import { css } from 'glamor';
 import ShareButton from '../../components/ShareButton';
-import { useWithStickyButtons } from '../../config';
+import config from '../../config.json';
 import styles from '../../components/ShareButton/style';
+
+const { useWithStickyButtons } = config;
 
 const shareButton = css({
   minWidth: 44,

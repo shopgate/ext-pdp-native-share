@@ -3,7 +3,7 @@ import { getProduct } from '@shopgate/pwa-common-commerce/product/selectors/prod
 
 /**
  * Appends required params for legacy image server.
- * @param {string} href
+ * @param {string} href Url of the image.
  * @returns {string}
  */
 const decorateLegacyImageUrl = (href) => {
@@ -34,7 +34,7 @@ const sanitizeImageUrl = (url) => {
   }
 
   return url;
-}
+};
 /**
  * Params for share button
  * @return {Array}

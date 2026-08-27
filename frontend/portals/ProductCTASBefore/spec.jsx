@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-// eslint-disable-next-line require-jsdoc
 const MockedShareButton = () => (<div>ShareButton</div>);
 jest.mock('../../components/ShareButton', () => MockedShareButton);
 let mockedIsIOS = true;

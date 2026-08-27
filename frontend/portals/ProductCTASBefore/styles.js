@@ -1,5 +1,7 @@
 import { css } from 'glamor';
-import { iOSIconStyles } from '../../config';
+import config from '../../config.json';
+
+const { iOSIconStyles } = config;
 
 const iOSButtons = css({
   position: 'absolute',
