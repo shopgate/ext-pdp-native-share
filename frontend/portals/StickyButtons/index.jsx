@@ -2,13 +2,10 @@ import React from 'react';
 import { css } from 'glamor';
 import ShareButton from '../../components/ShareButton';
 import config from '../../config.json';
-import styles from '../../components/ShareButton/style';
 
 const { useWithStickyButtons } = config;
 
 const shareButton = css({
-  minWidth: 44,
-  height: 44,
   marginRight: 15,
 }).toString();
 
@@ -23,8 +20,9 @@ export default (props) => {
 
   return (
     <ShareButton
-      className={`${styles.buttoniOSThemeiOSIcon} ${shareButton}`}
+      className={shareButton}
       rippleClassname={rippleButton}
+      size="large"
       {...props}
     />
   );

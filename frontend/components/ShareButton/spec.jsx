@@ -51,7 +51,7 @@ describe('ShareButton', () => {
     expect(component.find('ShareButton').props().shareParams).toMatchObject(mockedParams.mockedShareParams);
     expect(component).toMatchSnapshot();
 
-    component.find('ShareButton').instance().handleClick();
+    component.find('Ripple').invoke('onComplete')();
     expect(mockedShareItem).toHaveBeenCalled();
   });
 
