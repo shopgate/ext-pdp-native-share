@@ -16,10 +16,13 @@ const { IconButton } = engageComponents;
 const config = getConfig();
 
 /**
- * Whether the button shows the iOS share icon.
+ * Whether the button shows the iOS share icon. The config is empty when it could not be read, so
+ * the documented defaults of the two settings are applied here.
  * @returns {boolean}
  */
-const usesIOSIcon = () => (isIOSTheme() ? config.iOSIcon === 'ios' : config.gmdIcon !== 'gmd');
+const usesIOSIcon = () => (isIOSTheme()
+  ? (config.iOSIcon || 'ios') === 'ios'
+  : (config.gmdIcon || 'gmd') !== 'gmd');
 
 /**
  * Button style for pwa versions that don't ship IconButton yet.
@@ -27,10 +30,10 @@ const usesIOSIcon = () => (isIOSTheme() ? config.iOSIcon === 'ios' : config.gmdI
  */
 const getLegacyStyle = () => {
   if (isIOSTheme()) {
-    return config.iOSIcon === 'ios' ? styles.buttoniOSThemeiOSIcon : styles.buttoniOSThemeMaterialIcon;
+    return usesIOSIcon() ? styles.buttoniOSThemeiOSIcon : styles.buttoniOSThemeMaterialIcon;
   }
 
-  return config.gmdIcon === 'gmd' ? styles.buttonMaterialThemeMaterialIcon : styles.buttonMaterialThemeiOSIcon;
+  return usesIOSIcon() ? styles.buttonMaterialThemeiOSIcon : styles.buttonMaterialThemeMaterialIcon;
 };
 
 /**

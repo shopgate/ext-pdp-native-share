@@ -2,11 +2,17 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
+import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
+import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
 
-const mockedConfig = {
+const defaultConfig = {
   gmdIcon: 'gmd',
   iOSIcon: 'ios',
 };
+
+// Mutated rather than replaced between tests: the component reads the config once at module scope,
+// so it keeps the object it received on the first import.
+const mockedConfig = { ...defaultConfig };
 
 jest.mock('../../helpers/getConfig', () => () => mockedConfig);
 
@@ -48,6 +54,8 @@ describe('ShareButton > IconButton', () => {
   };
 
   beforeEach(() => {
+    Object.assign(mockedConfig, defaultConfig);
+    mockedIsIOS = true;
     mockedShareItem.mockClear();
   });
 
@@ -75,6 +83,16 @@ describe('ShareButton > IconButton', () => {
     mockedConfig.gmdIcon = 'ios';
 
     expect(makeComponent().find('IconButton').props().variant).toBe('surface');
+  });
+
+  it('should fall back to the icon of the active theme when the config could not be read', () => {
+    Object.keys(mockedConfig).forEach((key) => { delete mockedConfig[key]; });
+
+    mockedIsIOS = true;
+    expect(makeComponent().find('IconButton').props().children.type).toBe(ShareIconiOS);
+
+    mockedIsIOS = false;
+    expect(makeComponent().find('IconButton').props().children.type).toBe(ShareIconGmd);
   });
 
   it('should share on click', () => {
