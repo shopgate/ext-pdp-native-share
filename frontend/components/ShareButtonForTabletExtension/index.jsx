@@ -23,20 +23,10 @@ class ShareButtonForTabletExtension extends Component {
     shareParams: PropTypes.shape(),
   };
 
-
   static defaultProps = {
     'aria-hidden': null,
     shareParams: null,
   };
-
-  /**
-   * Construct and init state
-   * @param {Object} props Component props
-   */
-  constructor(props) {
-    super(props);
-    this.clickedOnce = false;
-  }
 
   /**
    * Hide StickyShareButton if tablet-adjustment-extension is enabled and tablet mode is active

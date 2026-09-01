@@ -36,7 +36,6 @@ const mockedShareItem = jest.fn();
 jest.mock('@shopgate/pwa-core/commands/shareItem', () => () => mockedShareItem());
 
 describe('ShareButton', () => {
-  // eslint-disable-next-line require-jsdoc
   const makeComponent = () => {
     // eslint-disable-next-line global-require
     const ShareButton = require('./index').default;
@@ -52,7 +51,7 @@ describe('ShareButton', () => {
     expect(component.find('ShareButton').props().shareParams).toMatchObject(mockedParams.mockedShareParams);
     expect(component).toMatchSnapshot();
 
-    component.find('ShareButton').instance().handleClick();
+    component.find('Ripple').invoke('onComplete')();
     expect(mockedShareItem).toHaveBeenCalled();
   });
 

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { i18n } from '@shopgate/engage/core';
+import * as engageComponents from '@shopgate/engage/components';
 import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
 import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
 import Ripple from '@shopgate/pwa-ui-shared/Ripple';
@@ -10,78 +11,99 @@ import styles from './style';
 import getConfig from '../../helpers/getConfig';
 import connect from '../../connector';
 
+const { IconButton } = engageComponents;
+
+const config = getConfig();
+
 /**
- * ShareButton component
+ * Whether the button shows the iOS share icon. The config is empty when it could not be read, so
+ * the documented defaults of the two settings are applied here.
+ * @returns {boolean}
  */
-class ShareButton extends Component {
-  static propTypes = {
-    shareItem: PropTypes.func.isRequired,
-    className: PropTypes.string,
-    rippleClassname: PropTypes.string,
-    shareParams: PropTypes.shape(),
-  };
+const usesIOSIcon = () => (isIOSTheme()
+  ? (config.iOSIcon || 'ios') === 'ios'
+  : (config.gmdIcon || 'gmd') !== 'gmd');
 
-  static defaultProps = {
-    rippleClassname: '',
-    className: '',
-    shareParams: null,
-  };
-
-  static config = getConfig();
-
-  /**
-   * Gets the icon style.
-   * @returns {string}
-   */
-  static getIconStyle() {
-    if (isIOSTheme()) {
-      return this.config.iOSIcon === 'ios' ? styles.buttoniOSThemeiOSIcon : styles.buttoniOSThemeMaterialIcon;
-    }
-    return this.config.gmdIcon === 'gmd' ? styles.buttonMaterialThemeMaterialIcon : styles.buttonMaterialThemeiOSIcon;
+/**
+ * Button style for pwa versions that don't ship IconButton yet.
+ * @returns {string}
+ */
+const getLegacyStyle = () => {
+  if (isIOSTheme()) {
+    return usesIOSIcon() ? styles.buttoniOSThemeiOSIcon : styles.buttoniOSThemeMaterialIcon;
   }
 
-  /**
-   * Renders the share icon depending on theme
-   * @returns {JSX.Element}
-   */
-  static renderIcon() {
-    if (isIOSTheme()) {
-      return this.config.iOSIcon === 'ios' ? <ShareIconiOS /> : <ShareIconGmd />;
-    }
+  return usesIOSIcon() ? styles.buttonMaterialThemeiOSIcon : styles.buttonMaterialThemeMaterialIcon;
+};
 
-    return this.config.gmdIcon === 'gmd' ? <ShareIconGmd /> : <ShareIconiOS />;
+/**
+ * The share button component.
+ * @param {Object} props Props.
+ * @returns {JSX.Element|null}
+ */
+const ShareButton = ({
+  className,
+  rippleClassname,
+  shareItem,
+  shareParams,
+  size,
+}) => {
+  const handleClick = useCallback(() => {
+    shareItem();
+  }, [shareItem]);
+
+  if (!shareParams || shareParams.deepLink === undefined) {
+    return null;
   }
 
-  /**
-   * Handles the share button click
-   * Shows share screen for app
-   */
-  handleClick = () => {
-    this.props.shareItem();
-  };
+  const icon = usesIOSIcon() ? <ShareIconiOS /> : <ShareIconGmd />;
+  const label = i18n.text('pdpNativeShare.shareButton.label');
 
-  /**
-   * Renders the components
-   * @returns {JSX.Element}
-   */
-  render() {
-    if (!this.props.shareParams || this.props.shareParams.deepLink === undefined) {
-      return null;
-    }
-
+  if (IconButton) {
     return (
-      <button
-        className={`${this.constructor.getIconStyle()} ${this.props.className} share-button-mobile-mode`}
-        data-test-id="shareIcon"
-        type="button"
-        aria-label={i18n.text('pdpNativeShare.shareButton.label')}
+      <IconButton
+        aria-label={label}
+        variant="surface"
+        color="secondary"
+        size={size}
+        className={`${className} share-button-mobile-mode`}
+        onClick={handleClick}
+        testId="shareIcon"
       >
-        <Ripple className={`${styles.ripple(isIOSTheme())} ${this.props.rippleClassname}`} onComplete={this.handleClick}>
-          {this.constructor.renderIcon()}
-        </Ripple>
-      </button>
+        {icon}
+      </IconButton>
     );
   }
-}
+
+  return (
+    <button
+      className={`${getLegacyStyle()} ${className} share-button-mobile-mode`}
+      data-test-id="shareIcon"
+      type="button"
+      aria-label={label}
+    >
+      <Ripple className={`${styles.ripple(isIOSTheme())} ${rippleClassname}`} onComplete={handleClick}>
+        {icon}
+      </Ripple>
+    </button>
+  );
+};
+
+ShareButton.propTypes = {
+  shareItem: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  // Only applied by the legacy button. IconButton brings its own ripple.
+  rippleClassname: PropTypes.string,
+  shareParams: PropTypes.shape(),
+  // Only applied by IconButton. The legacy button is sized by its own styles.
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};
+
+ShareButton.defaultProps = {
+  rippleClassname: '',
+  className: '',
+  shareParams: null,
+  size: 'medium',
+};
 
 export default withPageProductId(connect(ShareButton));

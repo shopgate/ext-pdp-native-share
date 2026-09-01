@@ -3,6 +3,10 @@
  The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 2.4.0 - 2026-08-27
+### Changed
+- the share button now renders the engage `IconButton` when the underlying PWA provides it, and falls back to the previous button on older versions
+
 ## 2.3.1 - 2026-05-04
 ### Fixed
 - a11y label for tablet share button
