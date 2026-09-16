@@ -103,4 +103,21 @@ describe('ShareButton > IconButton', () => {
 
     expect(mockedShareItem).toHaveBeenCalled();
   });
+
+  it('should not render when the deep link is undefined', () => {
+    jest.resetModules();
+    jest.doMock('../../selectors/index', () => ({
+      getShareParams: () => ({ title: 'title', imageURL: 'imageURL', deepLink: undefined }),
+    }));
+
+    // eslint-disable-next-line global-require
+    const ShareButton = require('./index').default;
+    const component = mount((
+      <Provider store={configureStore()({})}>
+        <ShareButton />
+      </Provider>
+    ));
+
+    expect(component.find('IconButton').exists()).toBe(false);
+  });
 });
