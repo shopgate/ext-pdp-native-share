@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import I18n from '@shopgate/pwa-common/components/I18n';
-import { i18n } from '@shopgate/engage/core';
+import { i18n, isIOSTheme } from '@shopgate/engage/core';
 import { makeStyles, injectGlobal } from '@shopgate/engage/styles';
 import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
 import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
-import isIOSTheme from '@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme';
-import { withPageProductId } from '@shopgate-ps/pwa-extension-kit/connectors';
+import withPageProductId from '../../helpers/withPageProductId';
 import connect from '../../connector';
 
 const GAP_BIG = 16;

@@ -30,7 +30,6 @@
     "@shopgate/pwa-ui-material": "^7.30.0"
   },
   "dependencies": {
-    "@shopgate-ps/pwa-extension-kit": "^0.6.0",
     "prop-types": "^15.6.0"
   }
 }

@@ -17,7 +17,10 @@ const mockedConfig = { ...defaultConfig };
 jest.mock('../../helpers/getConfig', () => () => mockedConfig);
 
 let mockedIsIOS = true;
-jest.mock('@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme', () => () => mockedIsIOS);
+jest.mock('@shopgate/engage/core', () => ({
+  i18n: { text: key => key },
+  isIOSTheme: () => mockedIsIOS,
+}));
 
 jest.mock('../../selectors/index', () => ({
   getShareParams: () => ({
@@ -27,8 +30,9 @@ jest.mock('../../selectors/index', () => ({
   }),
 }));
 
-jest.mock('@shopgate-ps/pwa-extension-kit/connectors', () => ({
-  withPageProductId: WrappedComponent => () => <WrappedComponent productId="foo" />,
+jest.mock('../../helpers/withPageProductId', () => ({
+  __esModule: true,
+  default: WrappedComponent => () => <WrappedComponent productId="foo" />,
 }));
 
 const mockedShareItem = jest.fn();
@@ -107,7 +111,11 @@ describe('ShareButton > IconButton', () => {
   it('should not render when the deep link is undefined', () => {
     jest.resetModules();
     jest.doMock('../../selectors/index', () => ({
-      getShareParams: () => ({ title: 'title', imageURL: 'imageURL', deepLink: undefined }),
+      getShareParams: () => ({
+        title: 'title',
+        imageURL: 'imageURL',
+        deepLink: undefined,
+      }),
     }));
 
     // eslint-disable-next-line global-require

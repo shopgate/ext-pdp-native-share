@@ -3,10 +3,11 @@
  The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## 2.5.0 - 2026-09-16
+## 3.0.0 - 2026-09-16
 ### Changed
 - converted all components to the new engage theme (`makeStyles` / `theme.palette` instead of glamor and `themeConfig`)
 - the share button now always renders the engage `IconButton`; the legacy button fallback was removed
+- replaced `@shopgate-ps/pwa-extension-kit` with engage-native equivalents (`isIOSTheme` / `useRoute` from `@shopgate/engage/core`) and removed the dependency
 - bumped the `@shopgate/engage` peer dependency to `7.32.0-beta.20`
 
 ## 2.4.0 - 2026-08-27

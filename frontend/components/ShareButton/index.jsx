@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { i18n } from '@shopgate/engage/core';
+import { i18n, isIOSTheme } from '@shopgate/engage/core';
 import { IconButton } from '@shopgate/engage/components';
 import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
 import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
-import { withPageProductId } from '@shopgate-ps/pwa-extension-kit/connectors';
-import isIOSTheme from '@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme';
 import getConfig from '../../helpers/getConfig';
+import withPageProductId from '../../helpers/withPageProductId';
 import connect from '../../connector';
 
 const config = getConfig();
