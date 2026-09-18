@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { getProduct } from '@shopgate/pwa-common-commerce/product/selectors/product';
+import { getProduct } from '@shopgate/engage/product';
 
 /**
  * Appends required params for legacy image server.

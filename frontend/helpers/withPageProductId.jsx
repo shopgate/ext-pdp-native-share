@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRoute } from '@shopgate/engage/core';
-import { hex2bin } from '@shopgate/pwa-common/helpers/data';
+import { hex2bin } from '@shopgate/engage/core';
 
 /**
  * Injects the decoded productId of the current route into the wrapped component. Reads from the

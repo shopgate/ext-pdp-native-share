@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import I18n from '@shopgate/pwa-common/components/I18n';
 import { i18n, isIOSTheme } from '@shopgate/engage/core';
+import { I18n, ShareIconIOS, ShareIconAndroid } from '@shopgate/engage/components';
 import { makeStyles, injectGlobal } from '@shopgate/engage/styles';
-import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
-import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
 import withPageProductId from '../../helpers/withPageProductId';
 import connect from '../../connector';
 
@@ -68,8 +66,8 @@ const ShareButtonForTabletExtension = ({
   }
 
   const icon = isIOSTheme()
-    ? <ShareIconiOS className={classes.icon} />
-    : <ShareIconGmd className={classes.icon} />;
+    ? <ShareIconIOS className={classes.icon} />
+    : <ShareIconAndroid className={classes.icon} />;
 
   return (
     <button

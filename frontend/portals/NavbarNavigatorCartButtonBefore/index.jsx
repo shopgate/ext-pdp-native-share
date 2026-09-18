@@ -1,4 +1,4 @@
-import { ITEM_PATTERN } from '@shopgate/pwa-common-commerce/product/constants';
+import { ITEM_PATTERN } from '@shopgate/engage/product';
 import { isIOSTheme, useRoute } from '@shopgate/engage/core';
 import ShareButton from '../../components/ShareButton';
 
