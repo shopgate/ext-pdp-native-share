@@ -1,17 +1,32 @@
 import React from 'react';
-import isIOSTheme from '@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme';
+import { isIOSTheme } from '@shopgate/engage/core';
+import { makeStyles } from '@shopgate/engage/styles';
 import ShareButton from '../../components/ShareButton';
-import styles from './styles';
 import config from '../../config.json';
 
-const { useWithStickyButtons } = config;
+const { useWithStickyButtons, iOSIconStyles } = config;
+
+const useStyles = makeStyles()(() => ({
+  iOSButtons: {
+    position: 'absolute',
+    right: 62,
+    top: -20,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    ...(iOSIconStyles || {}),
+  },
+}));
 
 export default (props) => {
+  const { classes } = useStyles();
+
   if (!isIOSTheme() || useWithStickyButtons) {
     return null;
   }
+
   return (
-    <div className={`${styles.iOSButtons} native-share__button`}>
+    <div className={`${classes.iOSButtons} native-share__button`}>
       <ShareButton {...props} />
     </div>
   );

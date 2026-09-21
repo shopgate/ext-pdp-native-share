@@ -64,3 +64,5 @@ typings/
 frontend/config.json
 extension/config.json
 frontend/coverage
+
+frontend/package-lock.json
