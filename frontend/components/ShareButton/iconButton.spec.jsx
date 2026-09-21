@@ -21,11 +21,12 @@ jest.mock('@shopgate/engage/core', () => ({
   isIOSTheme: () => mockedIsIOS,
 }));
 
+let mockedDeepLink = 'deepLink';
 jest.mock('../../selectors/index', () => ({
   getShareParams: () => ({
     title: 'title',
     imageURL: 'imageURL',
-    deepLink: 'deepLink',
+    deepLink: mockedDeepLink,
   }),
 }));
 
@@ -42,6 +43,8 @@ jest.mock('@shopgate/engage/components', () => ({
   IconButton: ({ children, onClick }) => (
     <button type="button" onClick={onClick}>{children}</button>
   ),
+  ShareIconIOS: () => <svg />,
+  ShareIconAndroid: () => <svg />,
 }));
 
 describe('ShareButton > IconButton', () => {
@@ -59,6 +62,7 @@ describe('ShareButton > IconButton', () => {
   beforeEach(() => {
     Object.assign(mockedConfig, defaultConfig);
     mockedIsIOS = true;
+    mockedDeepLink = 'deepLink';
     mockedShareItem.mockClear();
   });
 
@@ -108,23 +112,8 @@ describe('ShareButton > IconButton', () => {
   });
 
   it('should not render when the deep link is undefined', () => {
-    jest.resetModules();
-    jest.doMock('../../selectors/index', () => ({
-      getShareParams: () => ({
-        title: 'title',
-        imageURL: 'imageURL',
-        deepLink: undefined,
-      }),
-    }));
+    mockedDeepLink = undefined;
 
-    // eslint-disable-next-line global-require
-    const ShareButton = require('./index').default;
-    const component = mount((
-      <Provider store={configureStore()({})}>
-        <ShareButton />
-      </Provider>
-    ));
-
-    expect(component.find('IconButton').exists()).toBe(false);
+    expect(makeComponent().find('IconButton').exists()).toBe(false);
   });
 });

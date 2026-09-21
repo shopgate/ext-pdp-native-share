@@ -10,6 +10,9 @@ jest.mock('@shopgate/engage/core', () => ({
   isIOSTheme: () => mockedIsIOS,
   useRoute: () => ({ pattern: mockedPattern }),
 }));
+jest.mock('@shopgate/engage/product', () => ({
+  ITEM_PATTERN: '/item/:productId',
+}));
 
 describe('GmdShareButton', () => {
   // eslint-disable-next-line global-require
@@ -23,13 +26,13 @@ describe('GmdShareButton', () => {
   it('should render null for iOS theme', () => {
     mockedIsIOS = true;
     const component = mount(<ShareButton />);
-    expect(component.html()).toBe('');
+    expect(component.html()).toBe(null);
   });
 
   it('should render null for different pages', () => {
     mockedPattern = '/';
     mockedIsIOS = false;
     const component = mount(<ShareButton />);
-    expect(component.html()).toBe('');
+    expect(component.html()).toBe(null);
   });
 });
