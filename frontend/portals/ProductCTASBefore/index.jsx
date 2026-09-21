@@ -1,3 +1,4 @@
+import React from 'react';
 import { isIOSTheme } from '@shopgate/engage/core';
 import { makeStyles } from '@shopgate/engage/styles';
 import ShareButton from '../../components/ShareButton';
