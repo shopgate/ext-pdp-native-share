@@ -9,7 +9,7 @@ import connect from '../../connector';
 const GAP_BIG = 16;
 
 injectGlobal({
-  '.share-button-mobile-mode': { display: 'var(--share-button-mobile-mode)' },
+  '.share-button-mobile-mode': { display: 'var(--share-button-mobile-mode) !important' },
 });
 
 const useStyles = makeStyles()(theme => ({
