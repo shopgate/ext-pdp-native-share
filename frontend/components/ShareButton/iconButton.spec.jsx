@@ -2,8 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
-import ShareIconiOS from '@shopgate/pwa-ui-ios/icons/ShareIcon';
-import ShareIconGmd from '@shopgate/pwa-ui-material/icons/ShareIcon';
+import { ShareIconIOS as ShareIconiOS, ShareIconAndroid as ShareIconGmd } from '@shopgate/engage/components';
 
 const defaultConfig = {
   gmdIcon: 'gmd',
@@ -17,18 +16,23 @@ const mockedConfig = { ...defaultConfig };
 jest.mock('../../helpers/getConfig', () => () => mockedConfig);
 
 let mockedIsIOS = true;
-jest.mock('@shopgate-ps/pwa-extension-kit/env/helpers/isIOSTheme', () => () => mockedIsIOS);
+jest.mock('@shopgate/engage/core', () => ({
+  i18n: { text: key => key },
+  isIOSTheme: () => mockedIsIOS,
+}));
 
+let mockedDeepLink = 'deepLink';
 jest.mock('../../selectors/index', () => ({
   getShareParams: () => ({
     title: 'title',
     imageURL: 'imageURL',
-    deepLink: 'deepLink',
+    deepLink: mockedDeepLink,
   }),
 }));
 
-jest.mock('@shopgate-ps/pwa-extension-kit/connectors', () => ({
-  withPageProductId: WrappedComponent => () => <WrappedComponent productId="foo" />,
+jest.mock('../../helpers/withPageProductId', () => ({
+  __esModule: true,
+  default: WrappedComponent => () => <WrappedComponent productId="foo" />,
 }));
 
 const mockedShareItem = jest.fn();
@@ -39,6 +43,8 @@ jest.mock('@shopgate/engage/components', () => ({
   IconButton: ({ children, onClick }) => (
     <button type="button" onClick={onClick}>{children}</button>
   ),
+  ShareIconIOS: () => <svg />,
+  ShareIconAndroid: () => <svg />,
 }));
 
 describe('ShareButton > IconButton', () => {
@@ -56,6 +62,7 @@ describe('ShareButton > IconButton', () => {
   beforeEach(() => {
     Object.assign(mockedConfig, defaultConfig);
     mockedIsIOS = true;
+    mockedDeepLink = 'deepLink';
     mockedShareItem.mockClear();
   });
 
@@ -102,5 +109,11 @@ describe('ShareButton > IconButton', () => {
     component.find('button').simulate('click');
 
     expect(mockedShareItem).toHaveBeenCalled();
+  });
+
+  it('should not render when the deep link is undefined', () => {
+    mockedDeepLink = undefined;
+
+    expect(makeComponent().find('IconButton').exists()).toBe(false);
   });
 });

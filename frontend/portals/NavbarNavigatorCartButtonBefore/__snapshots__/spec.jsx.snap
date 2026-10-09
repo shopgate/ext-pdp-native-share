@@ -1,15 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GmdShareButton should render GmdShareButton 1`] = `
-<Component>
-  <NavbarNavigatorCartButtonBefore
-    pattern="/item/:productId"
-  >
-    <MockedShareButton>
-      <div>
-        ShareButton
-      </div>
-    </MockedShareButton>
-  </NavbarNavigatorCartButtonBefore>
-</Component>
+<NavbarNavigatorCartButtonBefore>
+  <MockedShareButton>
+    <div>
+      ShareButton
+    </div>
+  </MockedShareButton>
+</NavbarNavigatorCartButtonBefore>
 `;
