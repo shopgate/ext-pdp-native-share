@@ -1,27 +1,26 @@
 import React from 'react';
-import { css } from 'glamor';
+import { makeStyles } from '@shopgate/engage/styles';
 import ShareButton from '../../components/ShareButton';
 import config from '../../config.json';
 
 const { useWithStickyButtons } = config;
 
-const shareButton = css({
-  marginRight: 15,
-}).toString();
-
-const rippleButton = css({
-  fontSize: '29px !important',
-}).toString();
+const useStyles = makeStyles()(() => ({
+  shareButton: {
+    marginRight: 15,
+  },
+}));
 
 export default (props) => {
+  const { classes } = useStyles();
+
   if (!useWithStickyButtons) {
     return null;
   }
 
   return (
     <ShareButton
-      className={shareButton}
-      rippleClassname={rippleButton}
+      className={classes.shareButton}
       size="large"
       {...props}
     />

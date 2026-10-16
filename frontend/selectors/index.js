@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { getProduct } from '@shopgate/pwa-common-commerce/product/selectors/product';
+import { getProduct } from '@shopgate/engage/product';
 
 /**
  * Appends required params for legacy image server.
@@ -14,6 +14,7 @@ const decorateLegacyImageUrl = (href) => {
 
     return url.toString();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return href;
   }

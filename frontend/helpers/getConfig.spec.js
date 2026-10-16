@@ -1,5 +1,5 @@
 const mockedConfig = {};
-jest.mock('../config', () => mockedConfig);
+jest.mock('../config.json', () => mockedConfig);
 
 describe('getConfig', () => {
   it('should return config', () => {
