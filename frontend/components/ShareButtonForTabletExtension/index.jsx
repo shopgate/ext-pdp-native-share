@@ -21,7 +21,7 @@ const useStyles = makeStyles()(theme => ({
     color: theme.palette.secondary.main,
     fontSize: 16,
     fontWeight: 700,
-    borderRadius: 5,
+    borderRadius: theme.components.button.borderRadius,
     width: '100%',
     outline: 0,
     transition: 'width 300ms cubic-bezier(0.25, 0.1, 0.25, 1)',
